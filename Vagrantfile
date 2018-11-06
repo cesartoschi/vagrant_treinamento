@@ -48,6 +48,11 @@ FXid6lWlGcrt/ddLSuYvSB5hFZ2EIBtZzH3EzvU5Ay3gsMfCdmnx
   default.vm.provision "shell", inline: <<-SHELL
     yum install ansible -y
   SHELL
+  
+  config.vm.provider "virtualbox" do |default|
+    default.memory = "1536"
+  end
+
   end
 
 #DEVOPS
