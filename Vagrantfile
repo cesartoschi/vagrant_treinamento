@@ -76,10 +76,10 @@ FXid6lWlGcrt/ddLSuYvSB5hFZ2EIBtZzH3EzvU5Ay3gsMfCdmnx
   automation.vm.provision "shell", inline: <<-SHELL
     apt install python -y
   SHELL
-  end
 
   config.vm.provider "virtualbox" do |automation|
     automation.memory = "3072"
   end
 
+  end 
 end
