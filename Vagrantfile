@@ -3,10 +3,17 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     mkdir -p /root/.ssh
     echo "127.0.0.1 localhost
-192.168.60.10 devops devops.dexter.com.br
-192.168.60.11 docker docker.dexter.com.br
-192.168.60.12 default default.dexter.com.br
-192.168.60.13 automation automation.dexter.com.br" > /etc/hosts
+192.168.60.10 devops.dexter.com.br devops
+192.168.60.11 docker.dexter.com.br docker
+192.168.60.12 default.dexter.com.br default
+192.168.60.13 automation.dexter.com.br automation" > /etc/hosts
+
+    chattr -i /etc/resolv.conf
+    rm -rf /etc/resolv.conf
+    echo "nameserver 8.8.8.8
+search dexter.com.br" > /etc/resolv.conf
+    chattr +i /etc/resolv.conf
+
     echo "-----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAxe0u3mstnpAF86PBA7MWS7JkwH2fu+VliWpdmxqkMC8bsEQP
 bgIHqMMNAhaGOKj5UcTCMR3by+78pbWXjTh8eR8pDK0g3Ro3yexO0N/NrOsHyCpg
@@ -50,7 +57,7 @@ FXid6lWlGcrt/ddLSuYvSB5hFZ2EIBtZzH3EzvU5Ay3gsMfCdmnx
   SHELL
   
   config.vm.provider "virtualbox" do |default|
-    default.memory = "1536"
+    default.memory = "3072"
   end
 
   end
